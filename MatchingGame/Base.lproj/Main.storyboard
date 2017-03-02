@@ -267,6 +267,9 @@
                                 <state key="normal" title="New Game">
                                     <color key="titleColor" red="1" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="startNewGame" destination="BYZ-38-t0r" eventType="touchUpInside" id="Umo-SX-CY3"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cd7-DN-4wX">
                                 <rect key="frame" x="164" y="450" width="46" height="20.5"/>
@@ -287,6 +290,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="timerLabel" destination="cd7-DN-4wX" id="aIQ-RB-2db"/>
                         <outletCollection property="tileButtons" destination="gN5-nq-IF7" collectionClass="NSMutableArray" id="70J-uJ-a0U"/>
                         <outletCollection property="tileButtons" destination="Cha-pZ-nTB" collectionClass="NSMutableArray" id="lyc-Te-ljv"/>
                         <outletCollection property="tileButtons" destination="SfK-cQ-FoD" collectionClass="NSMutableArray" id="8Eg-gl-Iq3"/>
