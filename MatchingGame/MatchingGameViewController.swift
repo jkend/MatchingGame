@@ -2,7 +2,7 @@
 //  MatchingGameViewController.swift
 //  MatchingGame
 //
-//  Created by Tom Lawrence on 3/1/17.
+//  Created by Joy Kendall on 3/1/17.
 //  Copyright © 2017 Joy. All rights reserved.
 //
 
@@ -12,6 +12,8 @@ class MatchingGameViewController: UIViewController {
 
     @IBOutlet var tileButtons: [UIButton]!
     @IBOutlet weak var timerLabel: UILabel!
+    
+    private var cards = Array<String>()
     
     var gameTimer = Timer()
     var gameSeconds : Int = 0 {
@@ -23,15 +25,25 @@ class MatchingGameViewController: UIViewController {
                 timerLabel.text = String(format: "%02i:%02i:%02i", hours, minutes, seconds)
             } else {
                 timerLabel.text = String(format: "%02i:%02i", minutes, seconds)
-            }
-            
+            }            
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
+        collectImages()
+    }
+    
+    private func collectImages() {
+        guard let imageArray = Bundle.main.urls(forResourcesWithExtension: "jpg", subdirectory: "squares") else {
+            print ("couldn't get image array")
+            return
+        }
+        
+        for pic in imageArray {
+            cards.append(pic.lastPathComponent)
+        }
     }
     
     @IBAction private func startNewGame() {
