@@ -40,6 +40,10 @@ class MatchingGame {
         return false
     }
     
+    func tileAtIndex(index: Int) -> String {
+        return self.tileDeck[index]
+    }
+    
     func gameOver() -> Bool {
         return self.tileSet.isEmpty
     }
