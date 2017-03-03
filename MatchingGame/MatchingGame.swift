@@ -14,10 +14,9 @@ class MatchingGame {
     private var tileDeck = Array<String>()
     private var tileSet = Set<String>()
     
-    init(tileImages: Array<String>) {
+    init(_ tileImages: Array<String>) {
         self.tileList = tileImages
         for img in tileImages {
-            //self.tileSet.insert(img)
             self.tileDeck.append(img)
             self.tileDeck.append(img) // do it twice
         }
