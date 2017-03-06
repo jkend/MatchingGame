@@ -9,10 +9,11 @@
 import UIKit
 
 class MatchingGameViewController: UIViewController {
-
+    // MARK: Outlets
     @IBOutlet private var tileButtons: [UIButton]!
     @IBOutlet private weak var timerLabel: UILabel!
     
+    // MARK: Other properties
     private lazy var matchingGame: MatchingGame? = self.gameSetup()
     private var firstButtonInd: Int?
     
@@ -93,7 +94,7 @@ class MatchingGameViewController: UIViewController {
                 
                 // Only need to check if game is over when we get a match
                 if (matchingGame?.gameOver())! {
-                    stopGameTimer()
+                    handleGameOver()
                 }
             }
             else {
@@ -124,7 +125,7 @@ class MatchingGameViewController: UIViewController {
         tileButton.setImage(UIImage(contentsOfFile: usingImage), for: UIControlState.normal)
     }
     
-    // MARK: Start a new game
+    // MARK: New game
     @IBAction private func startNewGame() {
         stopAllTimers()
         matchingGame?.newGame()
@@ -143,6 +144,12 @@ class MatchingGameViewController: UIViewController {
         firstButtonInd = nil
     }
 
+    // MARK: Game over
+    private func handleGameOver() {
+        stopGameTimer()
+        HighScores.addScore(gameSeconds)
+    }
+    
     // MARK: Game timer
     private func startGameTimer() {
         stopGameTimer() // just in case
@@ -162,15 +169,5 @@ class MatchingGameViewController: UIViewController {
         tileFlipTimer.invalidate()
         gameSeconds = 0
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
