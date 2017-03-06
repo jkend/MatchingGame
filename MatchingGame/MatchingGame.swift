@@ -10,51 +10,51 @@ import Foundation
 
 class MatchingGame {
     
-    private var tileList = Array<String>()
-    private var tileDeck = Array<String>()
+    private var tileList = [String]()
+    private var tileDeck = [String]()
     private var tileSet = Set<String>()
     
     init(_ tileImages: Array<String>) {
-        self.tileList = tileImages
+        tileList = tileImages
         for img in tileImages {
-            self.tileDeck.append(img)
-            self.tileDeck.append(img) // do it twice
+            tileDeck.append(img)
+            tileDeck.append(img) // do it twice
         }
     }
     
     func newGame() {
-        self.shuffle()
-        self.tileSet.removeAll(keepingCapacity: true)
-        for img in self.tileList {
-            self.tileSet.insert(img)
+        shuffle()
+        tileSet.removeAll(keepingCapacity: true)
+        for img in tileList {
+            tileSet.insert(img)
         }
     }
     
     func matches(firstIndex: Int, withIndex: Int) -> Bool {
-        if self.tileDeck[firstIndex] == tileDeck[withIndex] {
-            let tileName = self.tileDeck[firstIndex]
-            self.tileSet.remove(tileName)
+        if tileDeck[firstIndex] == tileDeck[withIndex] {
+            let tileName = tileDeck[firstIndex]
+            tileSet.remove(tileName)
             return true
         }
         return false
     }
     
     func tileAtIndex(index: Int) -> String {
-        return self.tileDeck[index]
+        return tileDeck[index]
     }
     
     func gameOver() -> Bool {
-        return self.tileSet.isEmpty
+        return tileSet.isEmpty
     }
     
     private func shuffle() {
         var switchInd: Int
         var temp: String
-        for i in 0...self.tileDeck.count-1 {
+        for i in 0..<tileDeck.count {
             switchInd = Int(arc4random_uniform(UInt32(i)))
-            temp = self.tileDeck[switchInd]
-            self.tileDeck[switchInd] = self.tileDeck[i]
-            self.tileDeck[i] = temp
+            temp = tileDeck[switchInd]
+            tileDeck[switchInd] = tileDeck[i]
+            tileDeck[i] = temp
         }
     }
 }
