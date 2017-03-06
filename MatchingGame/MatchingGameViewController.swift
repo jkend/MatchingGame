@@ -35,6 +35,7 @@ class MatchingGameViewController: UIViewController {
     // MARK: Setup
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        timerLabel.font = UIFont.monospacedDigitSystemFont(ofSize: 18, weight: UIFontWeightRegular)
         startNewGame()
     }
     
@@ -48,7 +49,7 @@ class MatchingGameViewController: UIViewController {
             print ("couldn't get image array")
             return nil
         }
-        var cards = Array<String>()
+        var cards = [String]()
         for pic in imageArray {
             //cards.append(pic.lastPathComponent)
             cards.append(pic.path)
