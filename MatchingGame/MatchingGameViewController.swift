@@ -14,7 +14,7 @@ class MatchingGameViewController: UIViewController {
     @IBOutlet private weak var timerLabel: UILabel!
     
     private lazy var matchingGame: MatchingGame? = self.gameSetup()
-    private var firstButtonInd = -1
+    private var firstButtonInd: Int?
     
     var gameTimer = Timer()
     var tileFlipTimer = Timer()
@@ -34,7 +34,7 @@ class MatchingGameViewController: UIViewController {
     // MARK: Setup
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.startNewGame()
+        startNewGame()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -70,29 +70,31 @@ class MatchingGameViewController: UIViewController {
         }
         
         // Okay, now let's see what to do with this clicked tile!
-        // If we just clicked on this tile, just flip it back over
-        if firstButtonInd == tileInd {
-            self.flipFaceDown(sender)
-            firstButtonInd = -1
-        }
-        // If no other tile has been chosen, this is our first choice - show it
-        else if (firstButtonInd == -1) {
-            firstButtonInd = tileInd
-            self.flipFaceUp(sender, usingImage:tileImg!)
-        }
         
+        // If no other tile has been chosen, this is our first choice - show it
+        if firstButtonInd == nil {
+            firstButtonInd = tileInd
+            flipFaceUp(sender, usingImage:tileImg!)
+        }
+
+        // If we just clicked on this tile, just flip it back over
+        else if firstButtonInd == tileInd {
+            flipFaceDown(sender)
+            firstButtonInd = nil
+        }
+            
         else {
             // this is the second tile chosen, see if it matches
-            if (matchingGame?.matches(firstIndex: firstButtonInd, withIndex: tileInd))! {
+            if (matchingGame?.matches(firstIndex: firstButtonInd!, withIndex: tileInd))! {
                 
                 // We got a match! Keep both cards face up and disable them.
-                tileButtons[firstButtonInd].isEnabled = false
+                tileButtons[firstButtonInd!].isEnabled = false
                 tileButtons[tileInd].isEnabled = false
-                firstButtonInd = -1
+                firstButtonInd = nil
                 
                 // Only need to check if game is over when we get a match
                 if (matchingGame?.gameOver())! {
-                    self.stopTimer()
+                    stopTimer()
                 }
             }
             else {
@@ -106,8 +108,8 @@ class MatchingGameViewController: UIViewController {
                         return
                     }
                     strongSelf.flipFaceDown(sender)
-                    strongSelf.flipFaceDown(strongSelf.tileButtons[strongSelf.firstButtonInd])
-                    strongSelf.firstButtonInd = -1
+                    strongSelf.flipFaceDown(strongSelf.tileButtons[strongSelf.firstButtonInd!])
+                    strongSelf.firstButtonInd = nil
                 }
             }
             
@@ -133,11 +135,11 @@ class MatchingGameViewController: UIViewController {
     
     private func resetBoard() {
         var tile: UIButton
-        for i in 0...tileButtons.count-1 {
+        for i in 0..<tileButtons.count {
             tile = tileButtons[i]
             tile.isEnabled = true
             tile.setImage(UIImage(contentsOfFile: (matchingGame?.tileAtIndex(index: i))!), for: UIControlState.disabled)
-            self.flipFaceDown(tile)
+            flipFaceDown(tile)
         }
     }
 
