@@ -16,6 +16,7 @@ class HighScoresViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        scoresTextView.font = UIFont.monospacedDigitSystemFont(ofSize: 18, weight: UIFontWeightBold)
         updateUI()
     }
     
@@ -30,7 +31,7 @@ class HighScoresViewController: UIViewController {
             clearScoreButton.isHidden = false
             var scoreText = ""
             for i in 0..<scoreArray.count {
-                scoreText += "\(i+1). \(scoreArray[i])\n"
+                scoreText += "\(i+1). \(HighScores.timeString(fromSeconds: scoreArray[i]))\n"
             }
             scoresTextView.text = scoreText
         }
