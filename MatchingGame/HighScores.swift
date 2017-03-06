@@ -29,6 +29,17 @@ class HighScores {
         saveScores(scores)
     }
     
+    static func timeString(fromSeconds: Int) -> String {
+        let hours = fromSeconds / 3600
+        let minutes = fromSeconds / 60 % 60
+        let seconds = fromSeconds % 60
+        if hours > 0 {
+            return String(format: "%02i:%02i:%02i", hours, minutes, seconds)
+        } else {
+            return String(format: "%02i:%02i", minutes, seconds)
+        }
+    }
+    
     private static func saveScores(_ scoreArray: [Int]) {
         let defaults = UserDefaults.standard
         defaults.set(scoreArray, forKey: "topscores")
