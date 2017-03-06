@@ -39,8 +39,7 @@ class MatchingGameViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        gameTimer.invalidate()
-        tileFlipTimer.invalidate()
+        stopAllTimers()
     }
     
     private func gameSetup() -> MatchingGame? {
@@ -94,7 +93,7 @@ class MatchingGameViewController: UIViewController {
                 
                 // Only need to check if game is over when we get a match
                 if (matchingGame?.gameOver())! {
-                    stopTimer()
+                    stopGameTimer()
                 }
             }
             else {
@@ -127,10 +126,10 @@ class MatchingGameViewController: UIViewController {
     
     // MARK: Start a new game
     @IBAction private func startNewGame() {
-        stopTimer()
+        stopAllTimers()
         matchingGame?.newGame()
         resetBoard()
-        startTimer()
+        startGameTimer()
     }
     
     private func resetBoard() {
@@ -141,24 +140,28 @@ class MatchingGameViewController: UIViewController {
             tile.setImage(UIImage(contentsOfFile: (matchingGame?.tileAtIndex(index: i))!), for: UIControlState.disabled)
             flipFaceDown(tile)
         }
+        firstButtonInd = nil
     }
 
     // MARK: Game timer
-    private func startTimer() {
-        stopTimer() // just in case
-        gameTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+    private func startGameTimer() {
+        stopGameTimer() // just in case
+        gameTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateGameTimer), userInfo: nil, repeats: true)
     }
     
-    func updateTimer() {
+    func updateGameTimer() {
         gameSeconds += 1
     }
     
-    private func stopTimer() {
+    private func stopGameTimer() {
         gameTimer.invalidate()
-        gameSeconds = 0
     }
     
-    
+    private func stopAllTimers() {
+        gameTimer.invalidate()
+        tileFlipTimer.invalidate()
+        gameSeconds = 0
+    }
     
     /*
     // MARK: - Navigation
