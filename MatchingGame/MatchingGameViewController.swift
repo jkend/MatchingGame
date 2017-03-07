@@ -13,6 +13,7 @@ class MatchingGameViewController: UIViewController {
     @IBOutlet private var tileButtons: [UIButton]!
     @IBOutlet private weak var timerLabel: UILabel!
     
+    @IBOutlet weak var congratsPopup: CongratsView!
     // MARK: Other properties
     private lazy var matchingGame: MatchingGame? = self.gameSetup()
     private var firstButtonInd: Int?
@@ -132,6 +133,7 @@ class MatchingGameViewController: UIViewController {
         matchingGame?.newGame()
         resetBoard()
         startGameTimer()
+        congratsPopup.isHidden = true
     }
     
     private func resetBoard() {
@@ -149,6 +151,7 @@ class MatchingGameViewController: UIViewController {
     private func handleGameOver() {
         stopGameTimer()
         HighScores.addScore(gameSeconds)
+        congratsPopup.isHidden = false
     }
     
     // MARK: Game timer
