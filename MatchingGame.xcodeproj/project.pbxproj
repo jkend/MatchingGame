@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E213A5601E6F1C4F00C9E32C /* CongratsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E213A55F1E6F1C4F00C9E32C /* CongratsView.swift */; };
+		E213A5621E6F1C7200C9E32C /* CongratsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E213A5611E6F1C7200C9E32C /* CongratsView.xib */; };
 		E22BB2BE1E6744E900781EAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22BB2BD1E6744E900781EAB /* AppDelegate.swift */; };
 		E22BB2C31E6744E900781EAB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E22BB2C11E6744E900781EAB /* Main.storyboard */; };
 		E22BB2C51E6744E900781EAB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E22BB2C41E6744E900781EAB /* Assets.xcassets */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E213A55F1E6F1C4F00C9E32C /* CongratsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CongratsView.swift; sourceTree = "<group>"; };
+		E213A5611E6F1C7200C9E32C /* CongratsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CongratsView.xib; sourceTree = "<group>"; };
 		E22BB2BA1E6744E900781EAB /* MatchingGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MatchingGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E22BB2BD1E6744E900781EAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E22BB2C21E6744E900781EAB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -69,6 +73,8 @@
 				E22BB2BD1E6744E900781EAB /* AppDelegate.swift */,
 				E22BB2C11E6744E900781EAB /* Main.storyboard */,
 				E22BB2C41E6744E900781EAB /* Assets.xcassets */,
+				E213A55F1E6F1C4F00C9E32C /* CongratsView.swift */,
+				E213A5611E6F1C7200C9E32C /* CongratsView.xib */,
 				E292AA201E68AD1800C5D890 /* squares */,
 				E22BB2C61E6744E900781EAB /* LaunchScreen.storyboard */,
 				E22BB2C91E6744E900781EAB /* Info.plist */,
@@ -138,6 +144,7 @@
 				E22BB2C81E6744E900781EAB /* LaunchScreen.storyboard in Resources */,
 				E22BB2C51E6744E900781EAB /* Assets.xcassets in Resources */,
 				E22BB2C31E6744E900781EAB /* Main.storyboard in Resources */,
+				E213A5621E6F1C7200C9E32C /* CongratsView.xib in Resources */,
 				E292AA211E68AD1800C5D890 /* squares in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -150,6 +157,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E22BB2D61E676F5B00781EAB /* MatchingGameViewController.swift in Sources */,
+				E213A5601E6F1C4F00C9E32C /* CongratsView.swift in Sources */,
 				E22BB2BE1E6744E900781EAB /* AppDelegate.swift in Sources */,
 				E2C030F21E6DED4400F53F51 /* HighScores.swift in Sources */,
 				E292AA231E68BC2300C5D890 /* MatchingGame.swift in Sources */,
