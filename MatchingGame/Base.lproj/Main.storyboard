@@ -409,6 +409,11 @@
                                     <action selector="startNewGame" destination="BYZ-38-t0r" eventType="touchUpInside" id="Umo-SX-CY3"/>
                                 </connections>
                             </button>
+                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jha-4Z-hc6" customClass="CongratsView" customModule="MatchingGame" customModuleProvider="target">
+                                <rect key="frame" x="36" y="167" width="304" height="304"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -429,6 +434,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="congratsPopup" destination="jha-4Z-hc6" id="jHa-bd-8Lp"/>
                         <outlet property="timerLabel" destination="cd7-DN-4wX" id="aIQ-RB-2db"/>
                         <outletCollection property="tileButtons" destination="gN5-nq-IF7" collectionClass="NSMutableArray" id="70J-uJ-a0U"/>
                         <outletCollection property="tileButtons" destination="Cha-pZ-nTB" collectionClass="NSMutableArray" id="lyc-Te-ljv"/>
