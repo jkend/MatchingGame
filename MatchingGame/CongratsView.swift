@@ -13,29 +13,39 @@ class CongratsView: UIView {
 
     @IBOutlet var view: UIView!
 
- 
-   /*
-    @IBOutlet weak var timeReportLabel: UILabel!
     
+    @IBOutlet private weak var timeReportLabel: UILabel!
     var timeString: String? {
         didSet {
-            timeReportLabel.text = "You did it in \(timeString) !"
+            if timeString != nil {
+                timeReportLabel.text = "You did it in \(timeString!) !"
+            }
         }
-    }*/
-    
-    @IBAction func dismissMe() {
-        view.isHidden = true
     }
     
+    @IBAction func dismissMe() {
+        //self.isHidden = true
+        setHiddenState(true)
+    }
+    
+    func showMe() {
+        setHiddenState(false)
+    }
+    
+    private func setHiddenState(_ hidden: Bool) {
 
+        UIView.transition(with: self, duration: 0.5, options: .transitionCrossDissolve, animations: {() -> Void in
+            self.isHidden = hidden
+        }, completion: { _ in })
+        
+    }
+    
     override init(frame: CGRect) {
-
         super.init(frame: frame)
         xibSetup()
     }
     
     required init?(coder aDecoder: NSCoder) {
-
         super.init(coder: aDecoder)
         xibSetup()
     }

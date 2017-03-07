@@ -133,7 +133,7 @@ class MatchingGameViewController: UIViewController {
         matchingGame?.newGame()
         resetBoard()
         startGameTimer()
-        congratsPopup.isHidden = true
+        congratsPopup.dismissMe()
     }
     
     private func resetBoard() {
@@ -151,7 +151,8 @@ class MatchingGameViewController: UIViewController {
     private func handleGameOver() {
         stopGameTimer()
         HighScores.addScore(gameSeconds)
-        congratsPopup.isHidden = false
+        congratsPopup.timeString = HighScores.timeString(fromSeconds: gameSeconds)
+        congratsPopup.showMe()
     }
     
     // MARK: Game timer
