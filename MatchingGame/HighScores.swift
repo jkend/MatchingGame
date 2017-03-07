@@ -9,12 +9,18 @@
 import Foundation
 
 class HighScores {
+    static let maxScores = 10
     
     static func addScore(_ time: Int) {
         var scores = getScores()
-        scores.append(time)
-        scores.sort()
-        saveScores(scores)
+        if scores.count < maxScores || (scores.count == maxScores && time < scores.last!)  {
+            if scores.count == maxScores {
+                scores.removeLast()
+            }
+            scores.append(time)
+            scores.sort()
+            saveScores(scores)
+        }
     }
     
     static func getScores() -> [Int] {
