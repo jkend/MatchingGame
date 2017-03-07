@@ -12,6 +12,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CongratsView" customModule="MatchingGame" customModuleProvider="target">
             <connections>
+                <outlet property="congratsBottomLabel" destination="g2h-JZ-Bdb" id="EyE-0c-0Wc"/>
+                <outlet property="congratsTopLabel" destination="Ten-dX-XIr" id="Esg-Rz-sMa"/>
                 <outlet property="timeReportLabel" destination="RTk-4V-Qhh" id="j4G-Xi-VIe"/>
                 <outlet property="view" destination="iN0-l3-epB" id="8tW-rn-lFg"/>
             </connections>
