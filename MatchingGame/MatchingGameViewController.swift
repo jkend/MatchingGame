@@ -22,14 +22,7 @@ class MatchingGameViewController: UIViewController {
     var tileFlipTimer = Timer()
     private var gameSeconds : Int = 0 {
         didSet {
-            let hours = gameSeconds / 3600
-            let minutes = gameSeconds / 60 % 60
-            let seconds = gameSeconds % 60
-            if hours > 0 {
-                timerLabel.text = String(format: "%02i:%02i:%02i", hours, minutes, seconds)
-            } else {
-                timerLabel.text = String(format: "%02i:%02i", minutes, seconds)
-            }            
+            timerLabel.text = HighScores.timeString(fromSeconds: gameSeconds)
         }
     }
 
