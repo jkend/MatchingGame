@@ -16,7 +16,7 @@ class MatchingGameViewController: UIViewController {
     
     @IBOutlet weak var congratsPopup: CongratsView!
     // MARK: Other properties
-    private lazy var matchingGame: MatchingGame? = self.gameSetup()
+    private lazy var matchingGame: MatchingGame = self.gameSetup()
     private var firstButtonInd: Int?
     
     var gameTimer = Timer()
@@ -39,14 +39,10 @@ class MatchingGameViewController: UIViewController {
         stopAllTimers()
     }
     
-    private func gameSetup() -> MatchingGame? {
-        guard let imageArray = Bundle.main.urls(forResourcesWithExtension: "jpg", subdirectory: "squares") else {
-            print ("couldn't get image array")
-            return nil
-        }
+    private func gameSetup() -> MatchingGame {
+        let imageArray = Bundle.main.urls(forResourcesWithExtension: "jpg", subdirectory: "squares")
         var cards = [String]()
-        for pic in imageArray {
-            //cards.append(pic.lastPathComponent)
+        for pic in imageArray! {
             cards.append(pic.path)
         }
         let game = MatchingGame(cards)
@@ -57,7 +53,7 @@ class MatchingGameViewController: UIViewController {
     // MARK: Click on a tile
     @IBAction func chooseTile(_ sender: UIButton) {
         let tileInd = tileButtons.index(of: sender)!
-        let tileImg = self.matchingGame?.tileAtIndex(index: tileInd)
+        let tileImg = self.matchingGame.tileAtIndex(index: tileInd)
         
         // First, if we're in the middle of a "non match",
         // fire that timer immediately.
@@ -70,7 +66,7 @@ class MatchingGameViewController: UIViewController {
         // If no other tile has been chosen, this is our first choice - show it
         if firstButtonInd == nil {
             firstButtonInd = tileInd
-            flipFaceUp(sender, usingImage:tileImg!)
+            flipFaceUp(sender, usingImage:tileImg)
         }
 
         // If we just clicked on this tile, just flip it back over
@@ -81,7 +77,7 @@ class MatchingGameViewController: UIViewController {
             
         else {
             // this is the second tile chosen, see if it matches
-            if (matchingGame?.matches(firstIndex: firstButtonInd!, withIndex: tileInd))! {
+            if (matchingGame.matches(firstIndex: firstButtonInd!, withIndex: tileInd)) {
                 
                 // We got a match! Keep both cards face up and disable them.
                 tileButtons[firstButtonInd!].isEnabled = false
@@ -89,14 +85,14 @@ class MatchingGameViewController: UIViewController {
                 firstButtonInd = nil
                 
                 // Only need to check if game is over when we get a match
-                if (matchingGame?.gameOver())! {
+                if (matchingGame.gameOver()) {
                     handleGameOver()
                 }
             }
             else {
                 // The second card isn't a match.  Show it, but set a timer that
                 // will flip both cards over.
-                self.flipFaceUp(sender, usingImage: tileImg!)
+                self.flipFaceUp(sender, usingImage: tileImg)
                 tileFlipTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) {
                     [weak self] timer in
                     
@@ -124,7 +120,7 @@ class MatchingGameViewController: UIViewController {
     // MARK: New game
     @IBAction private func startNewGame() {
         stopAllTimers()
-        matchingGame?.newGame()
+        matchingGame.newGame()
         resetBoard()
         startGameTimer()
         congratsPopup.dismissMe()
@@ -135,7 +131,7 @@ class MatchingGameViewController: UIViewController {
         for i in 0..<tileButtons.count {
             tile = tileButtons[i]
             tile.isEnabled = true
-            tile.setImage(UIImage(contentsOfFile: (matchingGame?.tileAtIndex(index: i))!), for: UIControlState.disabled)
+            tile.setImage(UIImage(contentsOfFile: matchingGame.tileAtIndex(index: i)), for: UIControlState.disabled)
             flipFaceDown(tile)
         }
         firstButtonInd = nil
