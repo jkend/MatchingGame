@@ -427,7 +427,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Matching Game" id="paK-Ln-sId">
-                        <barButtonItem key="rightBarButtonItem" title="High Scores" id="uhF-We-Qcu">
+                        <barButtonItem key="rightBarButtonItem" title="Best Times" id="uhF-We-Qcu">
                             <connections>
                                 <segue destination="hiG-gC-6bk" kind="show" identifier="Show High Scores" id="YKk-hP-vv0"/>
                             </connections>
@@ -493,10 +493,10 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gLP-Vk-F2a">
-                                <rect key="frame" x="128" y="503" width="118" height="30"/>
+                                <rect key="frame" x="128" y="500" width="118" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Clear Scores">
+                                <state key="normal" title="Clear Times">
                                     <color key="titleColor" red="1" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
