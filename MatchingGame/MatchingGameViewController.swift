@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import QuartzCore
 
 class MatchingGameViewController: UIViewController {
     // MARK: Outlets
