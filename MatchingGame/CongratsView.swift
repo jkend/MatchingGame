@@ -48,7 +48,7 @@ class CongratsView: UIView {
     }
     
     private func setHiddenState(_ hidden: Bool) {
-        UIView.transition(with: self, duration: 0.5, options: .transitionCrossDissolve, animations: {() -> Void in
+        UIView.transition(with: self, duration: 0.25, options: .transitionCrossDissolve, animations: {() -> Void in
             self.isHidden = hidden
         }, completion: { _ in })
         
